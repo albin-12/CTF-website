@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { ArrowRight, Menu, X } from "lucide-react";
 import { nav, navCta, site } from "@/data/site";
 
@@ -20,9 +21,15 @@ export default function Navbar() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-black/40 backdrop-blur-md">
       <div className="wrap flex h-16 items-center justify-between">
-        <a href="#home" className="leading-none">
-          <span className="block text-2xl font-semibold tracking-wider">{site.name}</span>
-          <span className="block text-[8px] uppercase tracking-[0.3em] text-white/60">{site.tagline}</span>
+        <a href="#home" className="leading-none flex items-center">
+          <Image 
+            src="/images/LOGO.png" 
+            alt="CTF Logo" 
+            width={120} 
+            height={40} 
+            className="h-10 w-auto object-contain" 
+            priority
+          />
         </a>
         <nav className="hidden items-center gap-9 md:flex" aria-label="Main">
           {nav.map((n) => (
