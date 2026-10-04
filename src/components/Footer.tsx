@@ -14,15 +14,13 @@ export default function Footer() {
         className="wrap grid gap-10 lg:grid-cols-[1fr_2fr_1fr]"
       >
         <div>
-          {/* Replaced site.name text with the logo image */}
-          <Image 
-            src="/images/LOGO.png" 
-            alt="CTF Logo" 
-            width={120} 
-            height={40} 
-            className="h-10 w-auto object-contain mb-2" 
+          <Image
+            src="/images/LOGO.png"
+            alt="CTF Logo"
+            width={120}
+            height={40}
+            className="h-10 w-auto object-contain mb-2"
           />
-           
         </div>
         <nav aria-label="Footer" className="flex flex-wrap content-start gap-x-8 gap-y-3 text-xs text-white/70">
           {footer.links.map((l) => (
@@ -35,7 +33,6 @@ export default function Footer() {
               <a key={s.label} href={s.href} className="hover:text-[var(--accent)] transition-colors duration-200">{s.label}</a>
             ))}
           </p>
-          <a href={`mailto:${site.email}`} className="block hover:text-white transition-colors">{site.email}</a>
           <p>{site.location}</p>
           <p>{footer.note}</p>
         </div>
