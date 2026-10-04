@@ -22,7 +22,7 @@ export default function Footer() {
             height={40} 
             className="h-10 w-auto object-contain mb-2" 
           />
-          <p className="text-[9px] uppercase tracking-[0.3em] text-[var(--accent)]">{site.tagline}</p>
+           
         </div>
         <nav aria-label="Footer" className="flex flex-wrap content-start gap-x-8 gap-y-3 text-xs text-white/70">
           {footer.links.map((l) => (
