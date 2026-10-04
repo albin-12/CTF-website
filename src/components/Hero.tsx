@@ -1,11 +1,44 @@
 "use client";
+import { useEffect } from "react";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 import { hero } from "@/data/site";
 import Lines from "./Lines";
 
 export default function Hero() {
+  const rawMouseX = useMotionValue(0);
+  const rawMouseY = useMotionValue(0);
+
+  const springConfig = { damping: 25, stiffness: 150, mass: 0.5 };
+  const springX = useSpring(rawMouseX, springConfig);
+  const springY = useSpring(rawMouseY, springConfig);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const isTouch =
+      window.matchMedia("(pointer: coarse)").matches ||
+      "ontouchstart" in window ||
+      navigator.maxTouchPoints > 0;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (isTouch || reducedMotion) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const { innerWidth, innerHeight } = window;
+      const offsetX = (e.clientX - innerWidth / 2) / (innerWidth / 2);
+      const offsetY = (e.clientY - innerHeight / 2) / (innerHeight / 2);
+
+      // Move ~18px opposite to cursor
+      rawMouseX.set(offsetX * -18);
+      rawMouseY.set(offsetY * -18);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [rawMouseX, rawMouseY]);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -30,8 +63,9 @@ export default function Hero() {
     <section id="home" className="relative flex min-h-[100svh] items-center overflow-hidden pt-16">
       <motion.div
         initial={{ scale: 1.08, opacity: 0.8 }}
-        animate={{ scale: 1, opacity: 1 }}
+        animate={{ scale: 1.05, opacity: 1 }}
         transition={{ duration: 2.4, ease: [0.16, 1, 0.3, 1] }}
+        style={{ x: springX, y: springY }}
         className="absolute inset-0"
       >
         <Image src={hero.image} alt="" fill priority sizes="100vw" className="object-cover object-[75%_center] lg:object-right" />
