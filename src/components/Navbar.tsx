@@ -44,7 +44,7 @@ export default function Navbar() {
             alt="CTF Logo" 
             width={120} 
             height={40} 
-            className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105" 
+            className="h-6 w-auto object-contain transition-transform duration-300 group-hover:scale-105" 
             priority
           />
         </a>
