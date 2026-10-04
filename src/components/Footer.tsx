@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { footer, site } from "@/data/site";
 
 export default function Footer() {
@@ -13,7 +14,14 @@ export default function Footer() {
         className="wrap grid gap-10 lg:grid-cols-[1fr_2fr_1fr]"
       >
         <div>
-          <p className="text-3xl font-semibold tracking-wider text-white">{site.name}</p>
+          {/* Replaced site.name text with the logo image */}
+          <Image 
+            src="/images/LOGO.png" 
+            alt="CTF Logo" 
+            width={120} 
+            height={40} 
+            className="h-10 w-auto object-contain mb-2" 
+          />
           <p className="text-[9px] uppercase tracking-[0.3em] text-[var(--accent)]">{site.tagline}</p>
         </div>
         <nav aria-label="Footer" className="flex flex-wrap content-start gap-x-8 gap-y-3 text-xs text-white/70">

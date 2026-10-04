@@ -4,12 +4,11 @@
 export const site = {
   name: "CTF",
   tagline: "Create the Future",
-  email: "ctfindiaai@gmail.com",
   location: "India",
   year: 2026,
 };
 
-export const contact = { href: "mailto:ctfindiaai@gmail.com" };
+export const contact = { href: "" };
 
 export const nav = [
   { label: "Home", href: "#home" },
