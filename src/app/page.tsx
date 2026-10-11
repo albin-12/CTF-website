@@ -11,6 +11,7 @@ import Vision from "@/components/Vision";
 import Impact from "@/components/Impact";
 import Careers from "@/components/Careers";
 import FinalCta from "@/components/FinalCta";
+import Offices from "@/components/Offices";
 import Footer from "@/components/Footer";
 
 export default function Page() {
@@ -29,6 +30,7 @@ export default function Page() {
         <Impact />
         <Careers />
         <FinalCta />
+        <Offices />
       </main>
       <Footer />
     </>

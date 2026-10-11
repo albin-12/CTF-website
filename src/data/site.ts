@@ -170,6 +170,42 @@ export const finalCta = {
   image: "/images/cta.webp",
 };
 
+export const officesHeader = {
+  eyebrow: "Our Offices",
+  title: "Global Presence.",
+};
+
+export const offices = [
+  {
+    name: "Dubai Office",
+    city: "Dubai",
+    country: "UAE",
+    address: "PO Box 116926, Office No: 304, Al Huda Building, Garhoud, UAE.",
+    phones: [
+      { label: "Tel", number: "+971 4 458 0672" },
+    ],
+  },
+  {
+    name: "Muscat Office",
+    city: "Muscat",
+    country: "Oman",
+    address: "P.C. 121, Seeb, Al Hail South, Sooq Asalam, Oman.",
+    phones: [
+      { label: "Tel", number: "+968 9666 1743" },
+    ],
+  },
+  {
+    name: "Rhymney Office (Cardiff)",
+    city: "Cardiff",
+    country: "United Kingdom",
+    address: "Unit 3, River Bridge Road, Cardiff, United Kingdom.",
+    phones: [
+      { label: "Tel", number: "+44 (0) 333 090 7486" },
+      { label: "Mobile", number: "+44 (0) 7787 321820" },
+    ],
+  },
+];
+
 export const footer = {
   links: [
     { label: "Home", href: "#home" }, { label: "Technology", href: "#technology" },
@@ -183,3 +219,4 @@ export const footer = {
   ],
   note: "Engineered for a smarter tomorrow.",
 };
+
