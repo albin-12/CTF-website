@@ -14,10 +14,12 @@
   --muted: #9ca3af;
 }
 
+/* Lenis and HTML Scroll optimization: never fight smooth scrolling */
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto !important;
   background-color: var(--bg);
   color: #f3f4f6;
+  -webkit-text-size-adjust: 100%;
 }
 
 html.lenis, html.lenis body {
@@ -41,7 +43,14 @@ body {
   color: #f3f4f6;
   font-family: var(--font-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+}
+
+/* GPU hardware acceleration for canvases and images */
+canvas, img, video {
+  transform: translateZ(0);
 }
 
 section[id] {

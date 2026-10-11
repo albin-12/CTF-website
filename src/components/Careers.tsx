@@ -38,7 +38,10 @@ export default function Careers() {
                   href={careers.cta.href}
                   className="group flex items-center justify-between py-4 text-sm transition-all duration-300 hover:text-[var(--accent)] hover:pl-2"
                 >
-                  <span>{r}</span>
+                  <span className="flex items-center gap-3">
+                    <span className="h-1.5 w-1.5 rounded-full bg-white/20 transition-all duration-300 group-hover:bg-[var(--accent)] group-hover:scale-125 group-hover:shadow-[0_0_8px_var(--accent)]" />
+                    <span>{r}</span>
+                  </span>
                   <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
                 </a>
               </li>

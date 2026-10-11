@@ -1,11 +1,14 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
 export default function CustomCursor() {
   const [enabled, setEnabled] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+
+  const isHoveredRef = useRef(false);
+  const isVisibleRef = useRef(false);
 
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
@@ -34,28 +37,40 @@ export default function CustomCursor() {
     const handleMouseMove = (e: MouseEvent) => {
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
-      if (!isVisible) setIsVisible(true);
+
+      if (!isVisibleRef.current) {
+        isVisibleRef.current = true;
+        setIsVisible(true);
+      }
 
       const target = e.target as HTMLElement | null;
-      if (
+      const isInteractive = Boolean(
         target &&
-        (target.tagName === "BUTTON" ||
-          target.tagName === "A" ||
-          target.closest("a") ||
-          target.closest("button") ||
-          target.getAttribute("role") === "button" ||
-          target.getAttribute("role") === "tab")
-      ) {
-        setIsHovered(true);
-      } else {
-        setIsHovered(false);
+          (target.tagName === "BUTTON" ||
+            target.tagName === "A" ||
+            target.closest("a") ||
+            target.closest("button") ||
+            target.getAttribute("role") === "button" ||
+            target.getAttribute("role") === "tab")
+      );
+
+      if (isInteractive !== isHoveredRef.current) {
+        isHoveredRef.current = isInteractive;
+        setIsHovered(isInteractive);
       }
     };
 
-    const handleMouseLeave = () => setIsVisible(false);
-    const handleMouseEnter = () => setIsVisible(true);
+    const handleMouseLeave = () => {
+      isVisibleRef.current = false;
+      setIsVisible(false);
+    };
 
-    window.addEventListener("mousemove", handleMouseMove);
+    const handleMouseEnter = () => {
+      isVisibleRef.current = true;
+      setIsVisible(true);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
     document.addEventListener("mouseleave", handleMouseLeave);
     document.addEventListener("mouseenter", handleMouseEnter);
 
@@ -64,13 +79,13 @@ export default function CustomCursor() {
       document.removeEventListener("mouseleave", handleMouseLeave);
       document.removeEventListener("mouseenter", handleMouseEnter);
     };
-  }, [cursorX, cursorY, isVisible]);
+  }, [cursorX, cursorY]);
 
   if (!enabled || !isVisible) return null;
 
   return (
     <motion.div
-      className="pointer-events-none fixed top-0 left-0 z-[9999] rounded-full mix-blend-screen"
+      className="pointer-events-none fixed top-0 left-0 z-[9999] rounded-full will-change-transform transform-gpu"
       style={{
         x: springX,
         y: springY,

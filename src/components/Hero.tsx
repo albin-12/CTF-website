@@ -35,7 +35,7 @@ export default function Hero() {
       rawMouseY.set(offsetY * -18);
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [rawMouseX, rawMouseY]);
 
@@ -66,7 +66,7 @@ export default function Hero() {
         animate={{ scale: 1.05, opacity: 1 }}
         transition={{ duration: 2.4, ease: [0.16, 1, 0.3, 1] }}
         style={{ x: springX, y: springY }}
-        className="absolute inset-0"
+        className="absolute inset-0 will-change-transform transform-gpu"
       >
         <Image src={hero.image} alt="" fill priority sizes="100vw" className="object-cover object-[75%_center] lg:object-right" />
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-transparent lg:via-black/20" />
@@ -79,7 +79,13 @@ export default function Hero() {
           animate="visible"
           className="max-w-xl"
         >
-          <motion.p variants={itemVariants} className="eyebrow">{hero.eyebrow}</motion.p>
+          <motion.div variants={itemVariants} className="inline-flex items-center gap-2.5">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent)] opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--accent)]" />
+            </span>
+            <p className="eyebrow">{hero.eyebrow}</p>
+          </motion.div>
           <motion.h1 variants={itemVariants} className="h1 mt-6"><Lines lines={hero.title} /></motion.h1>
           <motion.p variants={itemVariants} className="lead mt-8 text-white/80">{hero.body}</motion.p>
           <motion.div variants={itemVariants}>
