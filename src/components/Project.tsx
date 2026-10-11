@@ -15,13 +15,19 @@ export default function Project() {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <p className="eyebrow">{project.eyebrow}</p>
+          <div className="inline-flex items-center gap-2.5">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent)] opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--accent)]" />
+            </span>
+            <p className="eyebrow">{project.eyebrow}</p>
+          </div>
           <h2 className="h2 mt-5"><Lines lines={project.title} /></h2>
           <p className="lead mt-5">{project.body}</p>
           <p className="mt-8 text-sm text-white/70">{project.lead}</p>
           <ul className="mt-3 flex flex-wrap gap-2">
             {project.tech.map((t) => (
-              <li key={t} className="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs text-white/80 transition-colors duration-300 hover:border-[var(--accent)]/50 hover:text-white">
+              <li key={t} className="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs text-white/80 transition-all duration-300 hover:border-[var(--accent)] hover:text-white hover:scale-105 hover:shadow-[0_0_12px_rgba(16,185,129,0.25)]">
                 {t}
               </li>
             ))}

@@ -51,13 +51,19 @@ export default function Products() {
               className="relative flex h-full min-h-[420px] max-w-xs flex-col justify-center p-7 sm:p-10 z-10"
             >
               <h3 className="text-3xl font-light text-white">{p.name}</h3>
-              <p className="mt-1 text-[11px] uppercase tracking-[0.25em] text-[var(--accent)]">{p.type}</p>
+              <div className="mt-1.5 flex items-center gap-2">
+                <span className="relative flex h-1.5 w-1.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent)] opacity-75" />
+                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[var(--accent)]" />
+                </span>
+                <p className="text-[11px] uppercase tracking-[0.25em] text-[var(--accent)] font-mono">{p.type}</p>
+              </div>
               <p className="mt-4 text-sm leading-relaxed text-[var(--muted)]">{p.text}</p>
               <ul className="mt-5 space-y-1.5 text-xs text-white/80">
                 {p.features.map((f) => (
-                  <li key={f} className="flex items-center gap-2">
-                    <span className="h-1 w-1 rounded-full bg-[var(--accent)]" />
-                    {f}
+                  <li key={f} className="group/item flex items-center gap-2 transition-transform duration-200 hover:translate-x-1">
+                    <span className="h-1 w-1 rounded-full bg-[var(--accent)] transition-all duration-300 group-hover/item:scale-150 group-hover/item:shadow-[0_0_8px_var(--accent)]" />
+                    <span className="group-hover/item:text-white transition-colors">{f}</span>
                   </li>
                 ))}
               </ul>

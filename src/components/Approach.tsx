@@ -46,10 +46,14 @@ export default function Approach() {
             <motion.li
               key={s.title}
               variants={itemVariants}
-              whileHover={{ y: -2 }}
-              className="group bg-[var(--bg)] p-6 transition-colors duration-300 hover:bg-[#0c0d10]"
+              whileHover={{ y: -4, transition: { duration: 0.25 } }}
+              className="group relative bg-[var(--bg)] p-6 transition-all duration-300 hover:bg-[#0c0d10]"
             >
-              <span className="text-xs text-[var(--accent)] font-mono font-semibold transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(16,185,129,0.8)]">0{n + 1}</span>
+              <div className="absolute top-0 inset-x-0 h-[1.5px] bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <div className="flex items-center justify-between">
+                <span className="text-xs text-[var(--accent)] font-mono font-semibold transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(16,185,129,0.8)]">0{n + 1}</span>
+                <span className="h-1.5 w-1.5 rounded-full bg-white/20 transition-all duration-300 group-hover:bg-[var(--accent)] group-hover:shadow-[0_0_8px_var(--accent)]" />
+              </div>
               <h3 className="mt-4 text-lg font-medium text-white group-hover:text-[var(--accent)] transition-colors">{s.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-[var(--muted)]">{s.text}</p>
             </motion.li>

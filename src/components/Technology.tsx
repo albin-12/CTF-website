@@ -50,17 +50,21 @@ export default function Technology() {
           viewport={{ once: true, margin: "-50px" }}
           className="grid gap-px overflow-hidden border border-[var(--line)] bg-[var(--line)] sm:grid-cols-2 lg:grid-cols-4"
         >
-          {technology.items.map((t) => {
+          {technology.items.map((t, idx) => {
             const Icon = icons[t.icon] ?? Bot;
             return (
               <motion.div
                 key={t.title}
                 variants={itemVariants}
-                whileHover={{ y: -3, transition: { duration: 0.2 } }}
-                className="group relative bg-[var(--bg)] p-7 transition-colors duration-300 hover:bg-[#0c0d10]"
+                whileHover={{ y: -4, transition: { duration: 0.25 } }}
+                className="group relative bg-[var(--bg)] p-7 transition-all duration-300 hover:bg-[#0c0d10]"
               >
-                <div className="transition-transform duration-300 group-hover:scale-110">
-                  <Icon className="text-[var(--accent)] transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(16,185,129,0.5)]" size={30} strokeWidth={1.2} />
+                <div className="absolute top-0 inset-x-0 h-[1.5px] bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <div className="flex items-center justify-between">
+                  <div className="transition-transform duration-300 group-hover:scale-110">
+                    <Icon className="text-[var(--accent)] transition-all duration-300 group-hover:drop-shadow-[0_0_10px_rgba(16,185,129,0.6)]" size={30} strokeWidth={1.2} />
+                  </div>
+                  <span className="font-mono text-[10px] text-white/30 tracking-wider transition-colors duration-300 group-hover:text-[var(--accent)]">0{idx + 1}</span>
                 </div>
                 <h3 className="mt-6 text-lg font-medium group-hover:text-white transition-colors">{t.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-[var(--muted)]">{t.text}</p>

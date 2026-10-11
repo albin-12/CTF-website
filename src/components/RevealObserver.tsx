@@ -13,6 +13,7 @@ export default function RevealObserver() {
         els.push(c as HTMLElement);
       })
     );
+    if (els.length === 0) return;
     const io = new IntersectionObserver(
       (entries) =>
         entries.forEach((en) => {
