@@ -68,7 +68,9 @@ export default function Hero() {
         style={{ x: springX, y: springY }}
         className="absolute inset-0 will-change-transform transform-gpu"
       >
-        <Image src={hero.image} alt="" fill priority sizes="100vw" className="object-cover object-[75%_center] lg:object-right" />
+        <Image src={hero.image} alt="CTF Autonomous Humanoid Robot" fill priority sizes="100vw" className="object-cover object-[75%_center] lg:object-right" />
+        {/* Ambient green luminescence accentuating the robot's illuminated core and sensors */}
+        <div className="pointer-events-none absolute right-[12%] lg:right-[18%] top-[22%] lg:top-[28%] h-72 w-72 lg:h-[420px] lg:w-[420px] rounded-full bg-[var(--accent)]/15 blur-[110px]" />
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-transparent lg:via-black/20" />
       </motion.div>
 

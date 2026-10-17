@@ -9,7 +9,7 @@ export default function About() {
   return (
     <section id="about" className="rule relative">
       <DogScroll>
-        <div className="wrap flex h-full items-center py-12">
+        <div className="wrap flex h-full items-center py-20 lg:py-28">
           <div className="grid w-full gap-12 lg:grid-cols-[1.1fr_1fr_0.5fr]">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
